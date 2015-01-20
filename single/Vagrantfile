@@ -1,0 +1,58 @@
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+SITE_NAME = "todo_app"
+BASE_PATH = "/opt/sites/"
+REMOTE_SITE_ROOT = "#{BASE_PATH}#{SITE_NAME}/src"
+REMOTE_ENV_ROOT = "#{BASE_PATH}#{SITE_NAME}/venv"
+FILE_NAME = "donato.todo"
+SERVER_NAME = "todo.dev"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "To-Do"
+  end
+
+  # Sets the machine hostname
+  config.vm.hostname = SERVER_NAME
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "precise64"
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network "private_network", ip: "192.168.50.16"
+
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  config.vm.synced_folder "../..", REMOTE_SITE_ROOT
+
+  # Enable provisioning with Ansible.
+  config.vm.provision "ansible" do |ansible|
+  ansible.limit = "all"
+    ansible.playbook = "playbook.yml"
+    ansible.inventory_path = "inventory"
+    ansible.extra_vars = {
+      site_name: SITE_NAME,
+      env_root: REMOTE_ENV_ROOT,
+      site_root: REMOTE_SITE_ROOT,
+      file_name: SITE_NAME,
+      server_name: SERVER_NAME
+    }
+    # Prevent intermittent connection timeout on ssh when provisioning.
+    ansible.raw_ssh_args = ['-o ConnectTimeout=120']
+  end
+end
