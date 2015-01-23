@@ -1,0 +1,22 @@
+- hosts: all
+  user: vagrant
+  sudo: True
+  vars_files:
+    - passwords.yml
+  tasks:
+    - name: create donato user
+      user: name=donato groups=admin,sudo shell=/bin/bash password={{ ssh_password }} state=present
+    - name: grab vagrant user's keys
+      command: cat /home/vagrant/.ssh/authorized_keys
+      register: authorized_keys
+    - name: give vagrant user's keys to donato user
+      authorized_key: user=donato key="{{ item }}"
+      with_items: authorized_keys.stdout_lines
+
+- hosts: all
+  user: donato
+  sudo: True
+  tasks:
+    - { include: ../shared/prerequisites.yml }
+    - { include: ../shared/MEAN.yml }
+
