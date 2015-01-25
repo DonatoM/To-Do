@@ -1,0 +1,42 @@
+- name: Common | Update apt cache
+  sudo: yes
+  apt: update-cache=yes
+
+- name: Common | Update language
+  sudo: yes
+  apt: pkg=language-pack-en
+
+- name: Node.js | Package prerequisites for node.js
+  apt: pkg=python-software-properties state=present
+  sudo: yes
+
+- name: Node.js | Add the Node.js PPA
+  apt_repository: repo='ppa:chris-lea/node.js' state=present
+  sudo: yes
+
+- name: Node.js | Install Node.js and npm
+  apt: pkg=nodejs update-cache=yes
+  sudo: yes
+
+- name: Yeoman | Install Yeoman
+  sudo: yes
+  npm: name=yo global=yes
+
+- name: Yeoman | Install Angular.js generator
+  sudo: yes
+  npm: name=generator-angular global=yes
+
+- name: Express | Install Express
+  sudo: yes
+  npm: name=express global=yes
+
+- name: Sync-Prompt 
+  sudo: yes
+  npm: name=sync-prompt global=yes path=/opt/sites/applied_internet_technology/src/Applied Internet Technology/assignments/assignment_01/dmc573-homework01-blackjack
+
+- name: Installing Node Inspector
+  sudo: yes
+  npm: name=node-inspector global=yes
+
+
+

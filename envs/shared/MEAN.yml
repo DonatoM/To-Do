@@ -1,0 +1,7 @@
+- name: Installing Yo
+  sudo: yes
+  npm: name=yo global=yes
+
+- name: Installing MEAN.js generator
+  sudo: yes
+  npm: name=generator-meanjs global=yes
