@@ -1,0 +1,2 @@
+- name: restart app
+  supervisorctl: name=donato.applied_internet_technology state=restarted
