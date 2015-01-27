@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <section class="container">
+		<div class="container-page">
+			<div class="col-md-12">
+				<h3 class="text-center">Create a List!</h3>
+				<hr>
+				<form name="signup" id="signup" action="" method="post" data-parsley-validate>
+
+					<div class="form-group col-lg-12">
+						<label for="list_name">List Name</label>
+						<input type="text" name="list_name" class="form-control" value="" autofocus
+						required data-parsley-trigger="change" pattern="^[a-zA-Z0-9~@#\^\$&\*\(\)-_\+=\[\]\{\}\|\\,\.\?\s]*{1,32}$"
+         				data-parsley-pattern-message="Must be 1-32 characters!"
+         				data-parsley-required-message="You need to enter a list name!"/>
+					</div>
+
+					<button type="submit" class="btn btn-warning btn-lg center-block">Create</button>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>

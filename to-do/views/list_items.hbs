@@ -1,0 +1,43 @@
+<body>
+	<div class="container">
+		<div class="page-header text-center">
+			<h1>{{list_name}}</h1>
+			</br>
+		</div>
+			<form method="POST" action="/item/">
+				<div class="col-md-4 col-md-offset-4">
+					{{#if list_items}}
+					{{#each list_items}}
+						<ul class="list-group">
+							{{#unless checked}}
+							<li class="list-group-item">
+								<input type="checkbox" name="itemCheckbox" value="{{name}}" id="{{slug}}">
+								{{name}}
+							</li>
+							{{/unless}}
+
+							{{#if checked}}
+								<li class="list-group-item"><del>{{name}}</del></li>
+							{{/if}}
+
+							<input type="hidden" name="slug" value="{{slug}}">
+						</ul>
+					{{/each}}
+					<div class="col-md-4 col-md-offset-3">
+						<input type="submit" value="Update List" class="btn btn-default btn-lg">
+					</div
+					<br></br>
+					<br></br>
+					<hr>
+					{{/if}}
+			</form>
+
+		<form method="POST" action="" class="form-inline" role="form">
+			<input type="text" class="form-control" name="name" placeholder="Enter Task">
+			<input type="hidden" name="slug" value={{slug}}>
+			<div class="col-md-4 col-md-offset-3">
+				<input type="submit" value="Add to List" class="btn btn-default btn-lg">
+			</div
+		</form>
+	</div>
+</body>

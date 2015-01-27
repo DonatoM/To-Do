@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <section class="container">
+		<div class="container-page">
+			<div class="col-md-12">
+				<h3 class="text-center">Registration</h3>
+				<hr>
+				{{#if message}}
+					<div class="alert alert-danger"><p>{{ message }}</p></div>
+				{{/if}}
+				<form name="signup" id="signup" action="/signup" method="post" data-parsley-validate>
+
+					<div class="form-group col-lg-12">
+						<label for="first_name">First Name</label>
+						<input type="text" name="first_name" class="form-control" value="" autofocus
+						required data-parsley-trigger="change" pattern="^[a-zA-Z0-9~@#\^\$&\*\(\)-_\+=\[\]\{\}\|\\,\.\?\s]*{1,32}$"
+         				data-parsley-pattern-message="Must be 2-32 characters!"
+         				data-parsley-required-message="You need to enter a first name!"/>
+					</div>
+
+					<div class="form-group col-lg-12">
+						<label for="middle_name">Middle Name</label>
+						<input type="text" name="middle_name" class="form-control" value="">
+					</div>
+
+					<div class="form-group col-lg-12">
+						<label for="last_name">Last Name</label>
+						<input type="text" name="last_name" class="form-control" id="last_name" autofocus
+						required data-parsley-trigger="change" pattern="^[a-zA-Z0-9~@#\^\$&\*\(\)-_\+=\[\]\{\}\|\\,\.\?\s]*{1,32}$"
+         				data-parsley-pattern-message="Must be 2-32 characters!"
+         				data-parsley-required-message="You need to enter a last name!">
+					</div>
+
+					<div class="form-group col-lg-6">
+						<label for="password">Password</label>
+						<input type="password" name="password" class="form-control" id="password" autofocus
+						required data-parsley-trigger="change"
+						data-parsley-required-message="You need to enter a password!">
+					</div>
+
+					<div class="form-group col-lg-6">
+						<label for="password_check">Repeat Password</label>
+						<input type="password" name="pasword_check" class="form-control" id="password_check" autofocus
+						required data-parsley-trigger="change"
+						data-parsley-required-message="You need to verify your password!"
+						data-parsley-equalto="#password">
+					</div>
+
+					<div class="form-group col-lg-6">
+						<label for="email">Email Address</label>
+						<input type="email" name="email" class="form-control" id="email" autofocus
+						required data-parsley-trigger="change"
+						data-parsley-type="email"
+						data-parsley-required-message="You need to enter an email!">
+					</div>
+
+					<div class="form-group col-lg-6">
+						<label for="email">Repeat Email Address</label>
+						<input type="email" name="email_check" class="form-control" id="email" autofocus
+						required data-parsley-trigger="change"
+						data-parsley-type="email"
+						data-parsley-required-message="You need to verify your email address!"
+						data-parsley-equalto="#email">
+					</div>
+					<button type="submit" class="btn btn-warning btn-lg center-block">Register</button>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>

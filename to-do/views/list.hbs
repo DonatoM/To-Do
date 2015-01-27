@@ -1,0 +1,15 @@
+<body>
+	<div class="container">
+		<div class="page-header text-center">
+			<h1>Lists!</h1>
+			</br>
+		</div>
+		<div class="col-md-4 col-md-offset-4">
+			<ul class="list-group">
+				{{#each list}}
+				<a href="/list/{{this.slug}}" class="list-group-item">{{this.name}}</a>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</body>
