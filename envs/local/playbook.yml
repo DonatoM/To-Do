@@ -17,6 +17,5 @@
   user: donato
   sudo: True
   tasks:
-    - { include: ../shared/prerequisites.yml }
-    - { include: ../shared/MEAN.yml }
+    - { include: ../shared/node.yml }
 

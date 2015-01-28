@@ -1,12 +1,15 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
-SITE_NAME = "To-Do"
-BASE_PATH = "/opt/sites/"
-REMOTE_SITE_ROOT = "#{BASE_PATH}#{SITE_NAME}/src"
-REMOTE_ENV_ROOT = "#{BASE_PATH}#{SITE_NAME}/venv"
-FILE_NAME = "To-Do-App"
-SERVER_NAME = "todo.dev"
+SITE_NAME = "to-do"
+SERVER_NAME = "local.to-do.com"
+
+SITES = "/opt/sites/"
+SITE_ROOT = "#{SITES}#{SITE_NAME}"
+APP_ROOT = "#{SITE_ROOT}/src"
+REMOTE_SITE_ROOT = "#{SITES}#{SITE_NAME}/src"
+REMOTE_ENV_ROOT = "#{SITES}#{SITE_NAME}/venv"
+
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
@@ -47,9 +50,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.inventory_path = "inventory"
     ansible.extra_vars = {
       site_name: SITE_NAME,
+      app_root: APP_ROOT,
       env_root: REMOTE_ENV_ROOT,
       site_root: REMOTE_SITE_ROOT,
-      file_name: SITE_NAME,
       server_name: SERVER_NAME
     }
     # Prevent intermittent connection timeout on ssh when provisioning.
