@@ -5,23 +5,4 @@
   apt: name=nodejs update_cache=yes
 
 - name: Installing Node Packages
-  npm: name={{ item }} global=yes path={{ app_root }}
-  with_items:
-    - express
-    - npm
-    - slug
-    - path
-    - passport
-    - passport-local
-    - nodemon
-    - nodemailer
-    - morgan
-    - mongoose
-    - mongoose-url-slugs
-    - hbs
-    - express
-    - express-session
-    - connect-flash
-    - cookie-parser
-    - body-parser
-    - bcrypt-nodejs
+  npm: path={{ app_root }}/to-do/
