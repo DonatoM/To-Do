@@ -6,7 +6,7 @@ SERVER_NAME = "local.to-do.com"
 
 SITES = "/opt/sites/"
 SITE_ROOT = "#{SITES}#{SITE_NAME}"
-APP_ROOT = "#{SITE_ROOT}/src"
+APP_ROOT = "#{SITE_ROOT}/src/#{SITE_NAME}"
 REMOTE_SITE_ROOT = "#{SITES}#{SITE_NAME}/src"
 REMOTE_ENV_ROOT = "#{SITES}#{SITE_NAME}/venv"
 

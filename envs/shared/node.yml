@@ -1,25 +1,8 @@
-- name: Installing Node PPA
+- name: installing Node PPA
   apt_repository: repo='ppa:chris-lea/node.js' state=present
 
-- name: Installing Node
+- name: installing Node
   apt: name=nodejs update_cache=yes
 
 - name: Installing Node Packages
-  npm: name={{ item }} global=yes path={{ app_root }}/src/to-do
-  with_items:
-    - express
-    - slug
-    - path
-    - passport
-    - passport-local
-    - nodemon
-    - nodemailer
-    - morgan
-    - mongoose
-    - mongoose-url-slugs
-    - hbs
-    - express-session
-    - connect-flash
-    - cookie-parser
-    - body-parser
-    - bcrypt-nodejs
+  npm: path={{ app_root }} global=no path={{ app_root }}

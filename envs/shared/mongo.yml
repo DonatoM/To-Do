@@ -1,4 +1,7 @@
-- name: installing mongodb
-  apt: pkg={{ item }}
-  with_items:
-    - mongodb
+- name: Install mongodb
+  sudo: yes
+  apt: pkg=mongodb update-cache=yes
+
+- name: run mongo daemon
+  sudo: yes
+  service: name=mongodb state=started
