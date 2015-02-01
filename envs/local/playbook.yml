@@ -18,4 +18,5 @@
   sudo: True
   tasks:
     - { include: ../shared/node.yml }
+    - { include: ../shared/mongo.yml }
 
