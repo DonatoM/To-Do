@@ -4,5 +4,29 @@
 - name: installing Node
   apt: name=nodejs update_cache=yes
 
-- name: Installing Node Packages
-  npm: path={{ app_root }} global=no path={{ app_root }}
+- name: installing Node Packages
+  npm: name={{ item }} global=yes
+  sudo: yes
+  with_items:
+    - express
+    - slug
+    - path
+    - passport
+    - passport-local
+    - nodemon
+    - nodemailer
+    - morgan
+    - mongoose
+    - mongoose-url-slugs
+    - hbs
+    - express-session
+    - connect-flash
+    - cookie-parser
+    - body-parser
+    - bcrypt-nodejs
+    - forever
+
+- name: run application
+  command: forever start server.js
+  args:
+    chdir: "{{ app_root }}"

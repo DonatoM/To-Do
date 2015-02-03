@@ -1,4 +1,3 @@
-// Retrieve all necessary objects.
 var express = require('express');
 var path = require('path');
 var app = express();
@@ -16,11 +15,11 @@ mongoose.connect('mongodb://localhost/tasksdb');
 // Pass passport object to our passport configuration file.
 require('./config/passport')(passport);
 
-// Set our templating engine. (Handlebars)
+// Set our templating engine. (hbs)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// Taken from grocery app.js file.
+// Mounting middleware
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -28,8 +27,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// Taken from Class 17 GitHub Repo
-// Required for passport.
+// Required for passport
 app.use(session({ secret: 'secret' }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -44,7 +42,7 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-// Pass in our app and passport object over to routes.
+// Pass in our app, passport, and transporter object over to routes.
 // After all required content has been passed.
 require('./app/routes.js')(app, passport,transporter);
 
